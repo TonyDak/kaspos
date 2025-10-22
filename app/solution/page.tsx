@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
+import Link from "next/link";
 import Footer from '@/components/Footer';
-import { ShoppingCart, FileText, Package, CreditCard, FileCheck, Smartphone, Monitor, Tablet, Store, Zap, BarChart3, Building2, Sparkles, TrendingUp, ArrowRight, Leaf } from 'lucide-react';
+import { ShoppingCart, FileText, Package, CreditCard, FileCheck, Smartphone, Monitor, Tablet, Store, Zap, BarChart3, Building2, Sparkles, TrendingUp, ArrowRight, Leaf, Star } from 'lucide-react';
 
 type Language = 'vi' | 'en' | 'ko' | 'zh' | 'ja';
 
@@ -150,6 +151,76 @@ const translations: Translations = {
   infraFeature6: { vi: 'CDN', en: 'CDN', ko: 'CDN', zh: 'CDN', ja: 'CDN' },
   infraFeature7: { vi: 'SWAP', en: 'SWAP', ko: 'SWAP', zh: 'SWAP', ja: 'SWAP' },
   infraFeature8: { vi: 'Sun Backup', en: 'Sun Backup', ko: 'Sun 백업', zh: 'Sun备份', ja: 'Sunバックアップ' },
+
+  // Pricing
+  pricingBadge: { vi: 'Gói dịch vụ', en: 'Service Packages', ko: '서비스 패키지', zh: '服务套餐', ja: 'サービスパッケージ' },
+  pricingTitle: { vi: 'Grow with KAS POS — From Seed to Legacy', en: 'Grow with KAS POS — From Seed to Legacy', ko: 'KAS POS와 함께 성장 — 씨앗에서 유산까지', zh: '与KAS POS一起成长——从种子到传承', ja: 'KAS POSと共に成長 — 種から遺産へ' },
+  pricingTitle2: { vi: 'Từ hạt mầm đến di sản, KAS POS đồng hành cùng hành trình phát triển của bạn', en: 'From Seed to Legacy, KAS POS accompanies your growth journey', ko: '씨앗에서 유산까지, KAS POS는 귀하의 성장 여정을 동반합니다', zh: '从种子到传承，KAS POS伴随您的成长之旅', ja: '種から遺産へ、KAS POSはあなたの成長の旅に同行します' },
+  
+  // Seed Plan
+  seedPlan: { vi: 'Seed', en: 'Seed', ko: 'Seed', zh: 'Seed', ja: 'Seed' },
+  seedTarget: { vi: 'Khách hàng', en: 'Target Customer', ko: '대상 고객', zh: '目标客户', ja: 'ターゲット顧客' },
+  seedDesc1: { vi: 'Dành cho cửa hàng mới mở hoặc startup trong lĩnh vực FnB, Retail, Spa, Mini mart', en: 'For newly opened stores or startups in FnB, Retail, Spa, Mini mart', ko: 'FnB, 소매, 스파, 미니마트 분야의 신규 매장이나 스타트업을 위한', zh: '适用于餐饮、零售、水疗、便利店领域的新开店铺或创业公司', ja: 'FnB、小売、スパ、ミニマート分野の新規開業店舗やスタートアップ向け' },
+  seedDesc2: { vi: 'Cần số hóa quy trình bán hàng ngay từ đầu', en: 'Need to digitize sales process from the start', ko: '처음부터 판매 프로세스를 디지털화해야 합니다', zh: '需要从一开始就数字化销售流程', ja: '最初から販売プロセスをデジタル化する必要があります' },
+  seedDesc3: { vi: 'Cần phần mềm dễ dùng, giá hợp lý, triển khai nhanh, không cần nhân viên IT', en: 'Need easy-to-use, affordable software with quick deployment, no IT staff required', ko: '사용하기 쉽고 합리적인 가격의 소프트웨어가 필요하며 빠른 배포가 가능하고 IT 직원이 필요하지 않습니다', zh: '需要易用、价格合理、快速部署、无需IT人员的软件', ja: '使いやすく、手頃な価格で、迅速な展開が可能で、IT スタッフ不要のソフトウェアが必要' },
+  seedFeatures: { vi: 'Đặc điểm:', en: 'Features:', ko: '특징:', zh: '特点:', ja: '特徴:' },
+  seedFeature1: { vi: 'Thiết lập điểm bán trong vài phút, sẵn sàng hoạt động ngay', en: 'Set up POS in minutes, ready to operate immediately', ko: '몇 분 안에 POS 설정, 즉시 운영 가능', zh: '几分钟内设置POS，立即准备运营', ja: '数分でPOSをセットアップし、すぐに運用可能' },
+  seedFeature2: { vi: 'Giao diện thân thiện, thao tác nhanh – phù hợp nhân viên mới', en: 'User-friendly interface, quick operation – suitable for new staff', ko: '사용자 친화적 인터페이스, 빠른 작동 - 신입 직원에게 적합', zh: '友好的界面，快速操作 - 适合新员工', ja: 'ユーザーフレンドリーなインターフェース、迅速な操作 - 新しいスタッフに最適' },
+  seedFeature3: { vi: 'Quản lý đơn hàng, doanh thu, tồn kho cơ bản trên 1 màn hình', en: 'Manage orders, revenue, basic inventory on one screen', ko: '하나의 화면에서 주문, 수익, 기본 재고 관리', zh: '在一个屏幕上管理订单、收入、基本库存', ja: '1つの画面で注文、収益、基本在庫を管理' },
+  seedFeature4: { vi: 'Báo cáo ngày – ca – doanh số – top món bán chạy', en: 'Daily – shift – sales – top selling items reports', ko: '일일 - 교대 - 판매 - 베스트셀러 보고서', zh: '日报 - 班次 - 销售 - 畅销商品报告', ja: '日次 - シフト - 売上 - ベストセラーアイテムレポート' },
+  seedFeature5: { vi: 'Hỗ trợ đa thiết bị (POS, tablet, điện thoại)', en: 'Multi-device support (POS, tablet, phone)', ko: '다중 장치 지원 (POS, 태블릿, 전화)', zh: '多设备支持（POS、平板电脑、手机）', ja: 'マルチデバイスサポート（POS、タブレット、電話）' },
+  seedFeature6: { vi: 'Tích hợp ví điện tử & máy in hóa đơn', en: 'E-wallet & invoice printer integration', ko: '전자 지갑 및 송장 프린터 통합', zh: '电子钱包和发票打印机集成', ja: '電子ウォレットと請求書プリンターの統合' },
+  seedQuote: { vi: 'Giúp bạn bắt đầu hành trình kinh doanh chuyên nghiệp, nhanh chóng và tiết kiệm.', en: 'Help you start your professional business journey quickly and cost-effectively.', ko: '전문적인 비즈니스 여정을 빠르고 비용 효율적으로 시작할 수 있도록 도와드립니다.', zh: '帮助您快速且经济高效地开始专业的商业之旅。', ja: 'プロフェッショナルなビジネスの旅を迅速かつ費用対効果的に開始できるようサポートします。' },
+  
+  // Bloom Plan
+  bloomPlan: { vi: 'Bloom', en: 'Bloom', ko: 'Bloom', zh: 'Bloom', ja: 'Bloom' },
+  bloomTarget: { vi: 'Dành cho doanh nghiệp đang tăng trưởng', en: 'For growing businesses', ko: '성장하는 기업을 위한', zh: '适用于成长中的企业', ja: '成長中の企業向け' },
+  bloomDesc1: { vi: 'Quy mô từ 2–10 chi nhánh, muốn quản lý tập trung dữ liệu và nhân sự', en: '2-10 branches, centralized data and HR management', ko: '2-10개 지점, 중앙 집중식 데이터 및 인사 관리', zh: '2-10个分支机构，集中数据和人力资源管理', ja: '2〜10支店、集中データおよび人事管理' },
+  bloomDesc2: { vi: 'Đang mở rộng, bắt đầu thấy khó kiểm soát tồn kho, doanh thu, nhân viên giữa các chi nhánh', en: 'Expanding, difficulty controlling inventory, revenue, staff across branches', ko: '확장 중, 지점 간 재고, 수익, 직원 통제의 어려움', zh: '扩张中，难以控制分支机构之间的库存、收入、员工', ja: '拡大中、支店間の在庫、収益、スタッフの管理が困難' },
+  bloomFeature1: { vi: 'Quản lý tập trung nhiều chi nhánh trong 1 hệ thống', en: 'Centralized multi-branch management in one system', ko: '하나의 시스템에서 여러 지점 중앙 관리', zh: '在一个系统中集中管理多个分支机构', ja: '1つのシステムで複数支店の集中管理' },
+  bloomFeature2: { vi: 'Theo dõi doanh số từng cửa hàng, ca làm, nhân viên', en: 'Track sales by store, shift, employee', ko: '매장, 교대, 직원별 판매 추적', zh: '按商店、班次、员工跟踪销售', ja: '店舗、シフト、従業員別の売上追跡' },
+  bloomFeature3: { vi: 'Quản lý kho liên chi nhánh, chuyển hàng nội bộ dễ dàng', en: 'Inter-branch inventory management, easy internal transfers', ko: '지점 간 재고 관리, 쉬운 내부 이동', zh: '分支机构间库存管理，轻松内部转移', ja: '支店間在庫管理、簡単な内部転送' },
+  bloomFeature4: { vi: 'Báo cáo phân tích theo khu vực, sản phẩm, thời gian', en: 'Analytical reports by region, product, time', ko: '지역, 제품, 시간별 분석 보고서', zh: '按地区、产品、时间的分析报告', ja: '地域、製品、時間別の分析レポート' },
+  bloomFeature5: { vi: 'Tích hợp CRM cơ bản – quản lý khách hàng & khuyến mãi', en: 'Basic CRM integration – customer & promotion management', ko: '기본 CRM 통합 – 고객 및 프로모션 관리', zh: '基本CRM集成 – 客户和促销管理', ja: '基本的なCRM統合 – 顧客とプロモーション管理' },
+  bloomFeature6: { vi: 'Hỗ trợ team vận hành và kế toán xuất báo cáo nhanh', en: 'Support operations & accounting teams with quick reports', ko: '빠른 보고서로 운영 및 회계팀 지원', zh: '通过快速报告支持运营和会计团队', ja: '迅速なレポートで運営および会計チームをサポート' },
+  bloomQuote: { vi: 'Tăng trưởng vững chắc, kiểm soát tập trung – KAS POS đồng hành cùng bạn trên hành trình mở rộng.', en: 'Solid growth, centralized control – KAS POS accompanies you on your expansion journey.', ko: '견고한 성장, 중앙 집중식 제어 – KAS POS는 확장 여정에서 귀하와 함께합니다.', zh: '稳健增长，集中控制 – KAS POS伴随您的扩张之旅。', ja: '確実な成長、集中管理 – KAS POSはあなたの拡張の旅に同行します。' },
+  
+  // Thrive Plan
+  thrivePlan: { vi: 'Thrive', en: 'Thrive', ko: 'Thrive', zh: 'Thrive', ja: 'Thrive' },
+  thriveTarget: { vi: 'Dành cho doanh nghiệp quy mô vừa đến lớn', en: 'For medium to large enterprises', ko: '중대형 기업을 위한', zh: '适用于中大型企业', ja: '中堅から大企業向け' },
+  thriveDesc1: { vi: 'Từ 10–100 cửa hàng, cần tối ưu vận hành, phân tích dữ liệu, và tự động hóa quy trình', en: '10-100 stores, optimize operations, data analysis, process automation', ko: '10-100개 매장, 운영 최적화, 데이터 분석, 프로세스 자동화', zh: '10-100家店铺，优化运营、数据分析、流程自动化', ja: '10〜100店舗、運営最適化、データ分析、プロセス自動化' },
+  thriveDesc2: { vi: 'Cần hệ thống mạnh, dữ liệu thời gian thực, kết nối các bộ phận để ra quyết định nhanh', en: 'Need powerful system, real-time data, department connectivity for quick decisions', ko: '강력한 시스템, 실시간 데이터, 빠른 의사 결정을 위한 부서 연결 필요', zh: '需要强大的系统、实时数据、部门连接以快速决策', ja: '強力なシステム、リアルタイムデータ、迅速な意思決定のための部門接続が必要' },
+  thriveFeature1: { vi: 'Quản lý chuỗi cửa hàng trên toàn quốc, dữ liệu realtime', en: 'Nationwide chain management with real-time data', ko: '실시간 데이터로 전국 체인 관리', zh: '实时数据的全国连锁管理', ja: 'リアルタイムデータによる全国チェーン管理' },
+  thriveFeature2: { vi: 'Phân quyền đa cấp cho chi nhánh, khu vực, quản lý vùng', en: 'Multi-level permissions for branches, regions, area management', ko: '지점, 지역, 구역 관리를 위한 다단계 권한', zh: '分支机构、地区、区域管理的多级权限', ja: '支店、地域、エリア管理のための多段階権限' },
+  thriveFeature3: { vi: 'Tự động đồng bộ dữ liệu giữa POS – kho – kế toán', en: 'Auto-sync data between POS – inventory – accounting', ko: 'POS – 재고 – 회계 간 자동 데이터 동기화', zh: 'POS – 库存 – 会计之间的自动数据同步', ja: 'POS – 在庫 – 会計間の自動データ同期' },
+  thriveFeature4: { vi: 'Dashboard phân tích doanh thu, chi phí, lợi nhuận theo KPI', en: 'KPI dashboard analyzing revenue, costs, profit', ko: 'KPI 대시보드로 수익, 비용, 이익 분석', zh: 'KPI仪表板分析收入、成本、利润', ja: 'KPIダッシュボードによる収益、コスト、利益の分析' },
+  thriveFeature5: { vi: 'API kết nối ERP, CRM, Loyalty, E-invoice, Payment Gateway', en: 'API connects ERP, CRM, Loyalty, E-invoice, Payment Gateway', ko: 'ERP, CRM, Loyalty, E-invoice, Payment Gateway 연결 API', zh: 'API连接ERP、CRM、Loyalty、电子发票、支付网关', ja: 'ERP、CRM、Loyalty、電子請求書、決済ゲートウェイを接続するAPI' },
+  thriveFeature6: { vi: 'Tích hợp AI gợi ý hàng tồn, dự báo doanh số, tối ưu thực đơn', en: 'AI integration for inventory suggestions, sales forecasting, menu optimization', ko: '재고 제안, 판매 예측, 메뉴 최적화를 위한 AI 통합', zh: 'AI集成用于库存建议、销售预测、菜单优化', ja: '在庫提案、売上予測、メニュー最適化のためのAI統合' },
+  thriveQuote: { vi: 'Tăng tốc chuỗi của bạn với sức mạnh dữ liệu và tự động hóa thông minh từ KAS.', en: 'Accelerate your chain with data power and smart automation from KAS.', ko: 'KAS의 데이터 파워와 스마트 자동화로 체인을 가속화하세요.', zh: '使用KAS的数据力量和智能自动化加速您的连锁店。', ja: 'KASのデータパワーとスマート自動化でチェーンを加速。' },
+  
+  // Legacy Plan
+  legacyPlan: { vi: 'Legacy', en: 'Legacy', ko: 'Legacy', zh: 'Legacy', ja: 'Legacy' },
+  legacyTarget: { vi: 'Giải pháp dành cho tập đoàn, thương hiệu chuỗi lớn', en: 'Solution for corporations, large chain brands', ko: '기업, 대형 체인 브랜드를 위한 솔루션', zh: '适用于集团、大型连锁品牌的解决方案', ja: '企業、大規模チェーンブランド向けソリューション' },
+  legacyDesc1: { vi: '100+ cửa hàng, multi-brand, multi-country', en: '100+ stores, multi-brand, multi-country', ko: '100개 이상의 매장, 멀티 브랜드, 멀티 국가', zh: '100+家店铺，多品牌，多国家', ja: '100店舗以上、マルチブランド、マルチカントリー' },
+  legacyDesc2: { vi: 'Cần hệ thống POS mạnh mẽ, tùy chỉnh linh hoạt, kết nối toàn bộ hệ sinh thái vận hành', en: 'Need powerful POS system, flexible customization, full ecosystem connectivity', ko: '강력한 POS 시스템, 유연한 맞춤화, 전체 생태계 연결 필요', zh: '需要强大的POS系统、灵活的定制、全生态系统连接', ja: '強力なPOSシステム、柔軟なカスタマイズ、フルエコシステム接続が必要' },
+  legacyDesc3: { vi: 'Cần giải pháp riêng biệt', en: 'Need dedicated solution', ko: '전용 솔루션 필요', zh: '需要专用解决方案', ja: '専用ソリューションが必要' },
+  legacyFeature1: { vi: 'Quản lý tập trung nhiều thương hiệu, quốc gia, ngôn ngữ, tiền tệ', en: 'Centralized multi-brand, country, language, currency management', ko: '다중 브랜드, 국가, 언어, 통화 중앙 관리', zh: '集中管理多品牌、国家、语言、货币', ja: 'マルチブランド、国、言語、通貨の集中管理' },
+  legacyFeature2: { vi: 'Hệ thống tùy chỉnh workflow, báo cáo BI, AI Insight chuyên sâu', en: 'Customizable workflow, BI reporting, deep AI Insights', ko: '사용자 정의 워크플로, BI 보고, 심층 AI 인사이트', zh: '可定制工作流程、BI报告、深度AI洞察', ja: 'カスタマイズ可能なワークフロー、BIレポート、深いAIインサイト' },
+  legacyFeature3: { vi: 'Tích hợp ERP, HRM, CRM, Loyalty, Voucher Hub, Payment Hub', en: 'Integration with ERP, HRM, CRM, Loyalty, Voucher Hub, Payment Hub', ko: 'ERP, HRM, CRM, Loyalty, Voucher Hub, Payment Hub 통합', zh: '集成ERP、HRM、CRM、Loyalty、Voucher Hub、Payment Hub', ja: 'ERP、HRM、CRM、Loyalty、Voucher Hub、Payment Hubとの統合' },
+  legacyFeature4: { vi: 'Bảo mật cấp doanh nghiệp, phân quyền phức hợp', en: 'Enterprise-grade security, complex permissions', ko: '엔터프라이즈급 보안, 복잡한 권한', zh: '企业级安全、复杂权限', ja: 'エンタープライズグレードのセキュリティ、複雑な権限' },
+  legacyFeature5: { vi: 'Hạ tầng Cloud riêng, hiệu năng cao, uptime 99.99%', en: 'Private cloud infrastructure, high performance, 99.99% uptime', ko: '프라이빗 클라우드 인프라, 고성능, 99.99% 가동 시간', zh: '私有云基础设施、高性能、99.99%正常运行时间', ja: 'プライベートクラウドインフラ、高性能、99.99%稼働時間' },
+  legacyFeature6: { vi: 'Đội ngũ triển khai & hỗ trợ riêng (Dedicated Account Team)', en: 'Dedicated deployment & support team', ko: '전담 배포 및 지원팀', zh: '专门的部署和支持团队', ja: '専任の展開およびサポートチーム' },
+  legacyQuote: { vi: 'Từ hệ thống chuỗi đến tập đoàn – KAS POS là nền tảng vận hành trung tâm cho doanh nghiệp của bạn.', en: 'From chain system to corporation – KAS POS is the central operating platform for your business.', ko: '체인 시스템에서 기업까지 – KAS POS는 귀하의 비즈니스를 위한 중앙 운영 플랫폼입니다.', zh: '从连锁系统到集团 – KAS POS是您业务的中央运营平台。', ja: 'チェーンシステムから企業まで – KAS POSはあなたのビジネスの中心的な運営プラットフォームです。' },
+  
+  // Pricing
+  seedPrice: { vi: '299,000₫', en: '$12', ko: '$12', zh: '$12', ja: '$12' },
+  bloomPrice: { vi: '399,000₫', en: '$16', ko: '$16', zh: '$16', ja: '$16' },
+  thrivePrice: { vi: '599,000₫', en: '$24', ko: '$24', zh: '$24', ja: '$24' },
+  legacyPrice: { vi: '999,000₫', en: '$40', ko: '$40', zh: '$40', ja: '$40' },
+  perStorePerMonth: { vi: '/cửa hàng/tháng', en: '/store/month', ko: '/매장/월', zh: '/店铺/月', ja: '/店舗/月' },
+  
+  contactForPrice: { vi: 'Liên hệ báo giá', en: 'Contact for pricing', ko: '가격 문의', zh: '联系报价', ja: '価格についてお問い合わせ' },
+  contactUs: { vi: 'Liên hệ tư vấn', en: 'Contact Us', ko: '상담 문의', zh: '联系咨询', ja: 'お問い合わせ' },
 };
 
 export default function SolutionPage() {
@@ -698,6 +769,176 @@ export default function SolutionPage() {
           <div className="bg-white rounded-3xl p-8 border border-indigo-200 shadow-xl max-w-5xl mx-auto">
             <p className="text-2xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{t('valueTitle')}</p>
             <p className="text-lg text-gray-700 leading-relaxed">{t('platformValue')}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-xl font-bold uppercase tracking-wide mb-6">
+              <Star size={20} />
+              <span>{t('pricingBadge')}</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <span className="bg-gradient-to-r from-pink-600 to-pink-400 bg-clip-text text-transparent">
+                {t('pricingTitle')}
+              </span>
+            </h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+              <span className="bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">
+                {t('pricingTitle2')}
+              </span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Seed */}
+            <div className="bg-white rounded-3xl p-6 border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-2xl flex flex-col">
+              <div className="flex items-center gap-2 mb-3">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">{t('seedPlan')}</h3>
+              </div>
+              
+              <div className="mb-4">
+                <p className="text-3xl font-bold text-gray-900">{t('seedPrice')}</p>
+                <p className="text-sm text-gray-500">{t('perStorePerMonth')}</p>
+              </div>
+              
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-2">{t('seedTarget')}</p>
+              <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                <li>• {t('seedDesc1')}</li>
+                <li>• {t('seedDesc2')}</li>
+                <li>• {t('seedDesc3')}</li>
+              </ul>
+              
+              <p className="text-xs font-bold text-gray-900 mb-2">{t('seedFeatures')}</p>
+              <ul className="text-xs text-gray-600 space-y-1 mb-4">
+                <li>✓ {t('seedFeature1')}</li>
+                <li>✓ {t('seedFeature2')}</li>
+                <li>✓ {t('seedFeature3')}</li>
+                <li>✓ {t('seedFeature4')}</li>
+                <li>✓ {t('seedFeature5')}</li>
+                <li>✓ {t('seedFeature6')}</li>
+              </ul>
+              
+              <div className="bg-green-50 p-3 rounded-lg mb-4">
+                <p className="text-xs italic text-green-800"> {t('seedQuote')}</p>
+              </div>
+              
+              <Link href="#contact" className="block w-full px-4 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl text-center font-bold hover:from-green-700 hover:to-green-800 transition-all text-sm mt-auto">
+                {t('contactUs')}
+              </Link>
+            </div>
+
+            {/* Bloom */}
+            <div className="bg-white rounded-3xl p-6 border-2 border-blue-200 hover:border-blue-400 transition-all hover:shadow-2xl relative flex flex-col">
+              <div className="flex items-center gap-2 mb-3">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">{t('bloomPlan')}</h3>
+              </div>
+              
+              <div className="mb-4">
+                <p className="text-3xl font-bold text-gray-900">{t('bloomPrice')}</p>
+                <p className="text-sm text-gray-500">{t('perStorePerMonth')}</p>
+              </div>
+              
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-2">{t('bloomTarget')}</p>
+              <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                <li>• {t('bloomDesc1')}</li>
+                <li>• {t('bloomDesc2')}</li>
+              </ul>
+              
+              <p className="text-xs font-bold text-gray-900 mb-2">{t('seedFeatures')}</p>
+              <ul className="text-xs text-gray-600 space-y-1 mb-4">
+                <li>✓ {t('bloomFeature1')}</li>
+                <li>✓ {t('bloomFeature2')}</li>
+                <li>✓ {t('bloomFeature3')}</li>
+                <li>✓ {t('bloomFeature4')}</li>
+                <li>✓ {t('bloomFeature5')}</li>
+                <li>✓ {t('bloomFeature6')}</li>
+              </ul>
+              
+              <div className="bg-blue-50 p-3 rounded-lg mb-4">
+                <p className="text-xs italic text-blue-800"> {t('bloomQuote')}</p>
+              </div>
+              
+              <Link href="#contact" className="block w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-center font-bold hover:from-blue-700 hover:to-blue-800 transition-all text-sm mt-auto">
+                {t('contactUs')}
+              </Link>
+            </div>
+
+            {/* Thrive */}
+            <div className="bg-white rounded-3xl p-6 border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-2xl flex flex-col">
+              <div className="flex items-center gap-2 mb-3">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-500 bg-clip-text text-transparent">{t('thrivePlan')}</h3>
+              </div>
+              
+              <div className="mb-4">
+                <p className="text-3xl font-bold text-gray-900">{t('thrivePrice')}</p>
+                <p className="text-sm text-gray-500">{t('perStorePerMonth')}</p>
+              </div>
+              
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-2">{t('thriveTarget')}</p>
+              <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                <li>• {t('thriveDesc1')}</li>
+                <li>• {t('thriveDesc2')}</li>
+              </ul>
+              
+              <p className="text-xs font-bold text-gray-900 mb-2">{t('seedFeatures')}</p>
+              <ul className="text-xs text-gray-600 space-y-1 mb-4">
+                <li>✓ {t('thriveFeature1')}</li>
+                <li>✓ {t('thriveFeature2')}</li>
+                <li>✓ {t('thriveFeature3')}</li>
+                <li>✓ {t('thriveFeature4')}</li>
+                <li>✓ {t('thriveFeature5')}</li>
+                <li>✓ {t('thriveFeature6')}</li>
+              </ul>
+              
+              <div className="bg-purple-50 p-3 rounded-lg mb-4">
+                <p className="text-xs italic text-purple-800"> {t('thriveQuote')}</p>
+              </div>
+              
+              <Link href="#contact" className="block w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl text-center font-bold hover:from-purple-700 hover:to-purple-800 transition-all text-sm mt-auto">
+                {t('contactUs')}
+              </Link>
+            </div>
+
+            {/* Legacy */}
+            <div className="bg-white rounded-3xl p-6 border-2 border-orange-200 hover:border-orange-400 transition-all hover:shadow-2xl flex flex-col">
+              <div className="flex items-center gap-2 mb-3">
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">{t('legacyPlan')}</h3>
+              </div>
+              
+              <div className="mb-4">
+                <p className="text-3xl font-bold text-gray-900">{t('legacyPrice')}</p>
+                <p className="text-sm text-gray-500">{t('perStorePerMonth')}</p>
+              </div>
+              
+              <p className="text-xs font-semibold text-gray-500 uppercase mb-2">{t('legacyTarget')}</p>
+              <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                <li>• {t('legacyDesc1')}</li>
+                <li>• {t('legacyDesc2')}</li>
+                <li>• {t('legacyDesc3')}</li>
+              </ul>
+              
+              <p className="text-xs font-bold text-gray-900 mb-2">{t('seedFeatures')}</p>
+              <ul className="text-xs text-gray-600 space-y-1 mb-4">
+                <li>✓ {t('legacyFeature1')}</li>
+                <li>✓ {t('legacyFeature2')}</li>
+                <li>✓ {t('legacyFeature3')}</li>
+                <li>✓ {t('legacyFeature4')}</li>
+                <li>✓ {t('legacyFeature5')}</li>
+                <li>✓ {t('legacyFeature6')}</li>
+              </ul>
+              
+              <div className="bg-orange-50 p-3 rounded-lg mb-4">
+                <p className="text-xs italic text-orange-800"> {t('legacyQuote')}</p>
+              </div>
+              
+              <Link href="#contact" className="block w-full px-4 py-3 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl text-center font-bold hover:from-orange-700 hover:to-orange-800 transition-all text-sm mt-auto">
+                {t('contactUs')}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
