@@ -13,17 +13,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KAS - KAS TECHNOLOGY",
-  description: "Giải pháp quản lý bán hàng và vận hành chuỗi toàn diện. Tích hợp thanh toán, quản lý kho, báo cáo thông minh - tất cả trong một hệ thống.",
-  keywords: "POS, quản lý bán hàng, phần mềm quản lý, quản lý kho, thanh toán, báo cáo bán hàng, KAS",
+  title: "KAS POS - HỆ THỐNG QUẢN LÝ BÁN HÀNG TOÀN DIỆN",
+  description:
+    "Giải pháp quản lý bán hàng và vận hành chuỗi toàn diện. Tích hợp thanh toán, quản lý kho, báo cáo thông minh - tất cả trong một hệ thống.",
+  keywords:
+    "POS, quản lý bán hàng, phần mềm quản lý, quản lý kho, thanh toán, báo cáo bán hàng, KAS",
+  // cấu hình icon để hiển thị favicon trên tab trình duyệt (nhiều kích thước / định dạng)
   icons: {
-    icon: "https://api-kom.kas.asia/api/uploads/chat_image/Logo_KAS_1751350227987.png",
+    icon: [
+      {
+        url: "https://api-kom.kas.asia/api/uploads/chat_image/Logo_KAS_1751350227987.png",
+        type: "image/png",
+        sizes: "192x192",
+      },
+      {
+        url: "https://api-kom.kas.asia/api/uploads/chat_image/Logo_KAS_1751350227987.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+    ],
     shortcut: "https://api-kom.kas.asia/api/uploads/chat_image/Logo_KAS_1751350227987.png",
-    apple: "https://api-kom.kas.asia/api/uploads/chat_image/Logo_KAS_1751350227987.png",
+    apple: [
+      {
+        url: "https://api-kom.kas.asia/api/uploads/chat_image/Logo_KAS_1751350227987.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
   openGraph: {
-    title: "KAS - KAS TECHNOLOGY",
-    description: "Giải pháp quản lý bán hàng và vận hành chuỗi toàn diện. Tích hợp thanh toán, quản lý kho, báo cáo thông minh.",
+    title: "KAS POS - HỆ THỐNG QUẢN LÝ BÁN HÀNG TOÀN DIỆN",
+    description:
+      "Giải pháp quản lý bán hàng và vận hành chuỗi toàn diện. Tích hợp thanh toán, quản lý kho, báo cáo thông minh.",
     url: "https://posone.vn",
     siteName: "KAS",
     images: [
@@ -39,9 +60,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "KAS - KAS TECHNOLOGY",
+    title: "KAS POS - HỆ THỐNG QUẢN LÝ BÁN HÀNG TOÀN DIỆN",
     description: "Giải pháp quản lý bán hàng và vận hành chuỗi toàn diện.",
-    images: ["https://api-kom.kas.asia/api/uploads/chat_image/Logo_KAS_1751350227987.png"],
+    images: [
+      "https://api-kom.kas.asia/api/uploads/chat_image/Logo_KAS_1751350227987.png",
+    ],
   },
 };
 

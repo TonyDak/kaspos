@@ -20,12 +20,8 @@ interface Translations {
 const translations: Translations = {
   home: { vi: 'Trang chủ', en: 'Home', ko: '홈', zh: '首页', ja: 'ホーム' },
   customers: { vi: 'Khách hàng', en: 'Customers', ko: '고객', zh: '客户', ja: '顧客' },
-  solutions: { vi: 'Giải pháp', en: 'Solutions', ko: '솔루션', zh: '解决方案', ja: 'ソリューション' },
-  aiTransformation: { vi: 'AI Transformation', en: 'AI Transformation', ko: 'AI 트랜스포메이션', zh: 'AI转型', ja: 'AI変革' },
-  posOne: { vi: 'POS ONE', en: 'POS ONE', ko: 'POS ONE', zh: 'POS ONE', ja: 'POS ONE' },
-  kasPos: { vi: 'KAS POS', en: 'KAS POS', ko: 'KAS POS', zh: 'KAS POS', ja: 'KAS POS' },
-  koffice: { vi: 'KOFFICE', en: 'KOFFICE', ko: 'KOFFICE', zh: 'KOFFICE', ja: 'KOFFICE' },
-  kom: { vi: 'KOM', en: 'KOM', ko: 'KOM', zh: 'KOM', ja: 'KOM' },
+  solutions: { vi: 'Tính năng', en: 'Features', ko: '기능', zh: '功能', ja: '機能' },
+  kasPos: { vi: 'Đăng nhập', en: 'Login', ko: '로그인', zh: '登录', ja: 'ログイン' },
   trial: { vi: 'Tư vấn', en: 'Consultation', ko: '상담', zh: '咨询', ja: '相談' },
   language: { vi: 'Ngôn ngữ', en: 'Language', ko: '언어', zh: '语言', ja: '言語' },
 };
@@ -111,15 +107,6 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
 
               {/* Product Buttons */}
               <Link
-                href="https://posone.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg font-medium transition-all duration-300 shadow-md shadow-green-500/20 hover:shadow-lg hover:shadow-green-500/30 hover:scale-105 overflow-hidden text-sm"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
-                <span className="relative z-10">{t('posOne')}</span>
-              </Link>
-              <Link
                 href="https://kaspos.ai"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -128,23 +115,6 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
                 <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
                 <span className="relative z-10">{t('kasPos')}</span>
               </Link>
-              <Link
-                href="https://koffice.ai"
-                target="_blank"
-                className="group relative px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium transition-all duration-300 shadow-md shadow-purple-500/20 hover:shadow-lg hover:shadow-purple-500/30 hover:scale-105 overflow-hidden text-sm"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
-                <span className="relative z-10">{t('koffice')}</span>
-              </Link>
-              <Link
-                href="https://kom.tech/introduction"
-                target="_blank"
-                className="group relative px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-medium transition-all duration-300 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105 overflow-hidden text-sm"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
-                <span className="relative z-10">{t('kom')}</span>
-              </Link>
-
               {/* Consultation Button */}
               <button
                 onClick={() => setConsultationFormOpen(true)}
@@ -266,16 +236,6 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
 
               {/* Product Buttons */}
               <Link
-                href="https://posone.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block px-4 py-3 text-center bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg overflow-hidden"
-                onClick={handleMobileMenuClose}
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
-                <span className="relative z-10">{t('posOne')}</span>
-              </Link>
-              <Link
                 href="https://kaspos.ai"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -284,22 +244,6 @@ export default function Header({ language, onLanguageChange }: HeaderProps) {
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
                 <span className="relative z-10">{t('kasPos')}</span>
-              </Link>
-              <Link
-                href="#"
-                className="group relative block px-4 py-3 text-center bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg overflow-hidden"
-                onClick={handleMobileMenuClose}
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
-                <span className="relative z-10">{t('koffice')}</span>
-              </Link>
-              <Link
-                href="#"
-                className="group relative block px-4 py-3 text-center bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg overflow-hidden"
-                onClick={handleMobileMenuClose}
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
-                <span className="relative z-10">{t('kom')}</span>
               </Link>
 
               {/* Consultation Button */}

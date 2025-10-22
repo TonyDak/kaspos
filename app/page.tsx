@@ -1,6 +1,6 @@
 "use client";
 
-//trang chính kas
+//trang kaspos
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -36,46 +36,55 @@ interface Translations {
 const translations: Translations = {
   // Header
   customers: { vi: 'Khách hàng', en: 'Customers', ko: '고객', zh: '客户', ja: '顧客' },
-  solutions: { vi: 'Giải pháp', en: 'Solutions', ko: '솔루션', zh: '解决方案', ja: 'ソリューション' },
+  solutions: { vi: 'Tính năng', en: 'Features', ko: '기능', zh: '功能', ja: '機能' },
   aiTransformation: { vi: 'AI Transformation', en: 'AI Transformation', ko: 'AI 트랜스포메이션', zh: 'AI转型', ja: 'AI変革' },
   about: { vi: 'Về chúng tôi', en: 'About Us', ko: '회사 소개', zh: '关于我们', ja: '会社概要' },
   contact: { vi: 'Liên hệ', en: 'Contact', ko: '연락', zh: '联系', ja: '連絡' },
   login: { vi: 'Đăng nhập', en: 'Login', ko: '로그인', zh: '登录', ja: 'ログイン' },
   
   // Hero
-  badge: { vi: 'Công nghệ hàng đầu', en: 'Leading Technology', ko: '최고의 기술', zh: '领先技术', ja: '最先端技術' },
-  heroTitle: { vi: 'CÔNG TY CỔ PHẦN CÔNG NGHỆ KAS', en: 'KAS Technology Corporation', ko: 'KAS 기술 주식회사', zh: 'KAS科技股份公司', ja: 'KAS テクノロジー株式会社' },
-  heroSubtitle: { vi: 'Nhà cung cấp giải pháp POS và ERP hàng đầu tại Việt Nam', en: 'Leading POS and ERP Solution Provider in Vietnam', ko: '베트남 최고의 POS 및 ERP 솔루션 제공업체', zh: '越南领先的POS和ERP解决方案提供商', ja: 'ベトナムの主要なPOSおよびERPソリューションプロバイダー' },
-  heroDesc: { vi: 'Giải pháp chuyên sâu cho ngành F&B, Retail, Hospitality', en: 'Specialized solutions for F&B, Retail, and Hospitality industries', ko: 'F&B, 소매 및 환대 산업을 위한 전문 솔루션', zh: '专为餐饮、零售和酒店行业提供的专业解决方案', ja: 'F＆B、小売、ホスピタリティ業界向けの専門ソリューション' },
+  badge: { vi: 'Giải pháp POS tại Việt Nam', en: 'POS Solution in Vietnam', ko: '베트남의 POS 솔루션', zh: '越南的POS解决方案', ja: 'ベトナムのPOSソリューション' },
+  heroTitle: { vi: 'KAS POS', en: 'KAS POS', ko: 'KAS POS', zh: 'KAS POS', ja: 'KAS POS' },
+  heroSubtitle: { vi: 'Giải pháp quản lý bán hàng thông minh', en: 'Intelligent Sales Management Solution', ko: '지능형 판매 관리 솔루션', zh: '智能销售管理解决方案', ja: 'インテリジェントな販売管理ソリューション' },
+  heroTitle2: { vi: 'Triển khai đơn giản, Quản lý toàn diện, Tuân thủ chính sách thuế', en: 'Simple Deployment, Comprehensive Management, Tax Policy Compliance', ko: '간편한 배포, 포괄적인 관리, 세금 정책 준수', zh: '简单部署，全面管理，遵守税收政策', ja: '簡単な展開、包括的な管理、税制遵守' },
+  heroDesc: { vi: 'KAS POS - Hệ thống quản lý bán hàng toàn diện, giúp doanh nghiệp vận hành hiệu quả và tăng trưởng bền vững.', en: 'KAS POS - Comprehensive sales management system that helps businesses operate efficiently and achieve sustainable growth.', ko: 'KAS POS - 비즈니스가 효율적으로 운영되고 지속 가능한 성장을 달성할 수 있도록 돕는 포괄적인 판매 관리 시스템입니다.', zh: 'KAS POS - 综合销售管理系统，帮助企业高效运营，实现可持续增长。', ja: 'KAS POS - ビジネスが効率的に運営され、持続可能な成長を達成できるよう支援する包括的な販売管理システムです。' },
   registerNow: { vi: 'Đăng ký ngay', en: 'Register Now', ko: '지금 등록', zh: '立即注册', ja: '今すぐ登録' },
   contactUs: { vi: 'Liên hệ tư vấn', en: 'Contact Us', ko: '상담 문의', zh: '联系咨询', ja: 'お問い合わせ' },
   
   // Vision Section
-  visionBadge: { vi: 'Tầm nhìn', en: 'Vision', ko: '비전', zh: '愿景', ja: 'ビジョン' },
+  visionBadge: { vi: 'USP 1', en: 'Vision', ko: '비전', zh: '愿景', ja: 'ビジョン' },
   visionTitle: { vi: 'Trở thành công ty công nghệ AI-First hàng đầu Việt Nam trong lĩnh vực POS và giải pháp quản trị doanh nghiệp, kiến tạo thế hệ sản phẩm thông minh tự động hóa cho mọi mô hình kinh doanh.', en: 'To become Vietnam\'s leading AI-First technology company in the field of POS and enterprise management solutions, creating a generation of intelligent products that automate all business models.', ko: 'POS 및 엔터프라이즈 관리 솔루션 분야에서 베트남 최고의 AI-First 기술 회사가 되어 모든 비즈니스 모델을 자동화하는 지능형 제품 세대를 만듭니다.', zh: '成为越南领先的AI优先技术公司，专注于POS和企业管理解决方案，打造智能产品世代，实现所有商业模式的自动化。', ja: 'POSおよびエンタープライズ管理ソリューションの分野でベトナムを代表するAIファーストテクノロジー企業となり、すべてのビジネスモデルを自動化するインテリジェント製品の世代を創造します。' },
   visionDesc: { vi: 'Trở thành đối tác công nghệ hàng đầu, đồng hành cùng doanh nghiệp Việt Nam trong hành trình chuyển đổi số, mang đến các giải pháp sáng tạo và hiệu quả nhất.', en: 'To become a leading technology partner, accompanying Vietnamese businesses in their digital transformation journey, delivering the most innovative and effective solutions.', ko: '베트남 기업의 디지털 전환 여정에 동행하는 선도적인 기술 파트너가 되어 가장 혁신적이고 효과적인 솔루션을 제공합니다.', zh: '成为领先的技术合作伙伴，陪伴越南企业数字化转型之旅，提供最具创新性和有效的解决方案。', ja: 'ベトナム企業のデジタルトランスフォーメーションの旅に同行する主要なテクノロジーパートナーとなり、最も革新的で効果的なソリューションを提供します。' },
   
   // Mission Section
-  missionBadge: { vi: 'Sứ mệnh', en: 'Mission', ko: '미션', zh: '使命', ja: 'ミッション' },
+  missionBadge: { vi: 'USP 2', en: 'Mission', ko: '미션', zh: '使命', ja: 'ミッション' },
   missionTitle: { vi: 'KAS mang đến hệ sinh thái giải pháp AI-Driven toàn diện, giúp doanh nghiệp tối ưu vận hành, minh bạch quản trị và tăng trưởng bền vững thông qua tự động hóa và dữ liệu thông minh', en: 'KAS provides a comprehensive AI-Driven solution ecosystem that helps businesses optimize operations, ensure transparent management, and achieve sustainable growth through automation and intelligent data.', ko: 'KAS는 자동화 및 지능형 데이터를 통해 비즈니스가 운영을 최적화하고 투명한 관리를 보장하며 지속 가능한 성장을 달성할 수 있도록 포괄적인 AI 기반 솔루션 생태계를 제공합니다.', zh: 'KAS提供全面的AI驱动解决方案生态系统，帮助企业通过自动化和智能数据优化运营、确保透明管理，实现可持续增长。', ja: 'KASは、ビジネスが運用を最適化し、透明な管理を確保し、自動化とインテリジェントデータを通じて持続可能な成長を達成できるようにする包括的なAI駆動ソリューションエコシステムを提供します。' },
   missionDesc: { vi: 'Phát triển và cung cấp các sản phẩm công nghệ chất lượng cao, giúp tối ưu hóa hoạt động kinh doanh, nâng cao hiệu suất làm việc và tạo ra giá trị bền vững cho khách hàng.', en: 'Develop and provide high-quality technology products that optimize business operations, enhance work efficiency, and create sustainable value for customers.', ko: '비즈니스 운영을 최적화하고 업무 효율성을 향상시키며 고객에게 지속 가능한 가치를 창출하는 고품질 기술 제품을 개발하고 제공합니다.', zh: '开发和提供优质技术产品，优化业务运营，提高工作效率，为客户创造可持续价值。', ja: 'ビジネス運営を最適化し、作業効率を向上させ、顧客に持続可能な価値を創造する高品質なテクノロジー製品を開発・提供します。' },
   
-  // Core Values
-  valuesBadge: { vi: 'Giá trị cốt lõi', en: 'Core Values', ko: '핵심 가치', zh: '核心价值观', ja: 'コアバリュー' },
-  valuesTitle: { vi: 'Giá trị cốt lõi', en: 'Core Values', ko: '핵심 가치', zh: '核心价值观', ja: 'コアバリュー' },
-  value1: { vi: 'Sáng tạo', en: 'Innovation', ko: '혁신', zh: '创新', ja: 'イノベーション' },
-  value1Desc: { vi: 'Luôn tiên phong ứng dụng AI & công nghệ mới để tạo ra giải pháp đột phá', en: 'Always pioneering in applying AI & new technologies to create breakthrough solutions', ko: '항상 AI 및 새로운 기술을 적용하여 획기적인 솔루션을 창출하는 데 앞장서고 있습니다', zh: '始终在应用AI和新技术方面处于领先地位，创造突破性解决方案', ja: '常にAIと新技術の適用において先駆者であり、画期的なソリューションを創造しています' },
-  value2: { vi: 'Chính trực', en: 'Integrity', ko: '진실성', zh: '诚信', ja: '誠実' },
-  value2Desc: { vi: 'Minh bạch, trung thực và giữ trọn uy tín trong mọi cam kết', en: 'Transparency, honesty, and maintaining credibility in all commitments', ko: '모든 약속에서 투명성, 정직성 및 신뢰성 유지', zh: '在所有承诺中保持透明、诚实和信誉', ja: 'すべてのコミットメントにおいて透明性、誠実さ、信頼性を維持する' },
-  value3: { vi: 'Hiệu quả', en: 'Efficiency', ko: '탁월함', zh: '卓越', ja: '卓越' },
-  value3Desc: { vi: 'Tối ưu quy trình và giải pháp để mang lại hiệu quả vượt trội', en: 'Optimizing processes and solutions to deliver exceptional efficiency', ko: '탁월한 효율성을 제공하기 위해 프로세스 및 솔루션 최적화', zh: '优化流程和解决方案以提供卓越的效率', ja: '卓越した効率を提供するためにプロセスとソリューションを最適化する' },
-  value4: { vi: 'Khách hàng', en: 'Customer', ko: '고객 중심', zh: '以客户为中心', ja: '顧客中心' },
-  value4Desc: { vi: 'Lấy khách hàng làm trung tâm, thấu hiểu và đồng hành phát triển', en: 'Customer-centric, understanding and accompanying development', ko: '고객 중심, 이해 및 동반 개발', zh: '以客户为中心，理解并伴随发展', ja: '顧客中心、理解と伴走開発' },
-  value5: { vi: 'Tăng trưởng', en: 'Growth', ko: '성장', zh: '成长', ja: '成長' },
-  value5Desc: { vi: 'Tăng trưởng nhanh, bền vững và dài hạn cho cả KAS và khách hàng', en: 'Rapid, sustainable, and long-term growth for both KAS and customers', ko: 'KAS와 고객 모두를 위한 빠르고 지속 가능하며 장기적인 성장', zh: 'KAS和客户的快速、可持续和长期增长', ja: 'KASと顧客のための迅速で持続可能かつ長期的な成長' },
+  // Featured Features
+  featuresBadge: { vi: 'Tính năng nổi bật', en: 'Featured Features', ko: '주요 기능', zh: '特色功能', ja: '注目の機能' },
+  featuresTitle: { vi: 'Hệ thống POS thông minh với công nghệ tiên tiến, giúp doanh nghiệp tăng trưởng bền vững và cạnh tranh hiệu quả', en: 'Intelligent POS system with advanced technology, helping businesses achieve sustainable growth and effective competition', ko: '첨단 기술을 갖춘 지능형 POS 시스템으로 비즈니스가 지속 가능한 성장과 효과적인 경쟁을 달성할 수 있도록 지원', zh: '智能POS系统，采用先进技术，帮助企业实现可持续增长和有效竞争', ja: '先進技術を備えたインテリジェントPOSシステムで、ビジネスの持続可能な成長と効果的な競争を支援' },
+  feature1: { vi: 'Tốc độ xử lý siêu nhanh', en: 'Ultra-fast processing speed', ko: '초고속 처리 속도', zh: '超快处理速度', ja: '超高速処理' },
+  feature1Desc: { vi: 'Công nghệ Cloud Native giúp xử lý hàng nghìn giao dịch/giây với độ trễ dưới 100ms. Tự động scale theo nhu cầu thực tế.', en: 'Cloud Native technology processes thousands of transactions per second with latency under 100ms. Auto scaling as needed.', ko: '클라우드 네이티브 기술로 초당 수천 건의 거래를 100ms 이하의 지연으로 처리. 필요에 따라 자동 확장.', zh: '云原生技术每秒处理数千笔交易，延迟低于100ms。按需自动扩展。', ja: 'クラウドネイティブ技術で毎秒数千件の取引を100ms未満の遅延で処理。必要に応じて自動スケール。' },
+  feature2: { vi: 'Bảo mật đa lớp', en: 'Multi-layer security', ko: '다중 보안', zh: '多层安全', ja: '多層セキュリティ' },
+  feature2Desc: { vi: 'Mã hóa AES-256, 2FA, SSL/TLS, audit trail đầy đủ. Tuân thủ chuẩn PCI DSS và ISO 27001 cho bảo mật tối đa.', en: 'AES-256 encryption, 2FA, SSL/TLS, full audit trail. PCI DSS & ISO 27001 compliant for maximum security.', ko: 'AES-256 암호화, 2FA, SSL/TLS, 완전 감사 추적. PCI DSS 및 ISO 27001 준수로 최대 보안.', zh: 'AES-256加密、2FA、SSL/TLS、完整审计跟踪。符合PCI DSS和ISO 27001标准，安全性最高。', ja: 'AES-256暗号化、2FA、SSL/TLS、完全な監査証跡。PCI DSS・ISO 27001準拠で最大限のセキュリティ。' },
+  feature3: { vi: 'Đa nền tảng thông minh', en: 'Smart multi-platform', ko: '스마트 멀티플랫폼', zh: '智能多平台', ja: 'スマートマルチプラットフォーム' },
+  feature3Desc: { vi: 'Web, Mobile App, Tablet, Desktop. Đồng bộ real-time trên mọi thiết bị với giao diện responsive tối ưu.', en: 'Web, Mobile App, Tablet, Desktop. Real-time sync across all devices with optimized responsive UI.', ko: '웹, 모바일 앱, 태블릿, 데스크톱. 모든 기기에서 실시간 동기화 및 최적화된 반응형 UI.', zh: 'Web、移动应用、平板、桌面。所有设备实时同步，响应式界面优化。', ja: 'Web、モバイルアプリ、タブレット、デスクトップ。全デバイスでリアルタイム同期、最適化されたレスポンシブUI。' },
+  feature4: { vi: 'AI & Analytics thông minh', en: 'Smart AI & Analytics', ko: '스마트 AI 및 분석', zh: '智能AI与分析', ja: 'スマートAI・分析' },
+  feature4Desc: { vi: 'Trí tuệ nhân tạo phân tích xu hướng bán hàng, dự báo doanh thu, gợi ý sản phẩm và tối ưu hóa chiến lược kinh doanh.', en: 'AI analyzes sales trends, forecasts revenue, suggests products, and optimizes business strategy.', ko: 'AI가 판매 트렌드 분석, 매출 예측, 제품 추천, 비즈니스 전략 최적화.', zh: 'AI分析销售趋势、预测收入、推荐产品、优化业务策略。', ja: 'AIが販売傾向を分析し、売上予測、商品提案、戦略最適化。' },
+  feature5: { vi: 'Quản lý bán hàng toàn diện', en: 'Comprehensive sales management', ko: '포괄적 판매 관리', zh: '全面销售管理', ja: '包括的な販売管理' },
+  feature5Desc: { vi: 'Từ đơn hàng, thanh toán, kho bãi đến chăm sóc khách hàng. Tích hợp đầy đủ các module cần thiết cho doanh nghiệp.', en: 'From orders, payments, inventory to customer care. Fully integrated modules for business.', ko: '주문, 결제, 재고, 고객 관리까지. 비즈니스에 필요한 모든 모듈 통합.', zh: '从订单、支付、库存到客户服务。企业所需模块全部集成。', ja: '注文、決済、在庫、顧客対応まで。必要なモジュールを完全統合。' },
+  feature6: { vi: 'Báo cáo & Thống kê chi tiết', en: 'Detailed reports & statistics', ko: '상세 보고 및 통계', zh: '详细报告与统计', ja: '詳細なレポート・統計' },
+  feature6Desc: { vi: 'Hơn 50 loại báo cáo tự động: doanh thu, lợi nhuận, tồn kho, khách hàng. Dashboard trực quan với biểu đồ real-time.', en: '50+ automated reports: revenue, profit, inventory, customers. Intuitive dashboard with real-time charts.', ko: '50개 이상의 자동 보고서: 매출, 이익, 재고, 고객. 실시간 차트 대시보드.', zh: '50+自动报告：收入、利润、库存、客户。实时图表直观仪表盘。', ja: '50種類以上の自動レポート：売上、利益、在庫、顧客。リアルタイムグラフ付きダッシュボード。' },
+  feature7: { vi: 'Tiết kiệm chi phí tối đa', en: 'Maximum cost savings', ko: '최대 비용 절감', zh: '最大成本节约', ja: '最大限のコスト削減' },
+  feature7Desc: { vi: 'Giảm 60% thời gian quản lý, 40% chi phí vận hành. ROI dương trong 3 tháng đầu sử dụng với hỗ trợ 24/7.', en: 'Reduce management time by 60%, operating cost by 40%. Positive ROI in first 3 months with 24/7 support.', ko: '관리 시간 60% 절감, 운영 비용 40% 절감. 3개월 내 ROI 플러스, 24/7 지원.', zh: '管理时间减少60%，运营成本减少40%。前三个月ROI为正，全天候支持。', ja: '管理時間60%削減、運用コスト40%削減。導入3ヶ月でROIプラス、24時間サポート。' },
+  feature8: { vi: 'Triển khai nhanh chóng', en: 'Rapid deployment', ko: '신속한 도입', zh: '快速部署', ja: '迅速な導入' },
+  feature8Desc: { vi: 'Setup trong 30 phút, training 2 giờ. Hỗ trợ migration dữ liệu từ hệ thống cũ miễn phí. Go-live ngay trong ngày.', en: 'Setup in 30 minutes, 2-hour training. Free data migration from old system. Go-live same day.', ko: '30분 내 셋업, 2시간 교육. 기존 시스템 데이터 무료 이전. 당일 Go-live.', zh: '30分钟设置，2小时培训。免费数据迁移。当天上线。', ja: '30分セットアップ、2時間トレーニング。旧システムからのデータ移行無料。当日Go-live。' },
+  feature9: { vi: 'Tích hợp đa kênh', en: 'Multi-channel integration', ko: '멀티채널 통합', zh: '多渠道集成', ja: 'マルチチャネル統合' },
+  feature9Desc: { vi: 'Kết nối với 50+ nền tảng: Shopee, Lazada, Facebook, Instagram, Zalo. Đồng bộ đơn hàng và kho bãi tự động.', en: 'Connect to 50+ platforms: Shopee, Lazada, Facebook, Instagram, Zalo. Auto sync orders and inventory.', ko: '50개 이상의 플랫폼 연결: Shopee, Lazada, Facebook, Instagram, Zalo. 주문 및 재고 자동 동기화.', zh: '连接50+平台：Shopee、Lazada、Facebook、Instagram、Zalo。订单和库存自动同步。', ja: '50以上のプラットフォーム連携：Shopee、Lazada、Facebook、Instagram、Zalo。注文・在庫自動同期。' },
 
   // Roadmap
-  roadmapBadge: { vi: 'Lộ trình phát triển', en: 'Development Roadmap', ko: '개발 로드맵', zh: '发展路线图', ja: '開発ロードマップ' },
+  roadmapBadge: { vi: 'Giai đoạn phát triển', en: 'Development Stages', ko: '개발 단계', zh: '发展阶段', ja: '開発段階' },
   roadmapTitle: { vi: 'Lộ trình phát triển KAS', en: 'KAS Development Roadmap', ko: 'KAS 개발 로드맵', zh: 'KAS发展路线图', ja: 'KAS開発ロードマップ' },
   roadmap2015: { vi: '2015 - Thành lập', en: '2015 - Establishment', ko: '2015 - 설립', zh: '2015 - 成立', ja: '2015 - 設立' },
   roadmap2015Desc: { vi: 'Tập trung phát triển giải pháp POS cho mô hình chuỗi FnB, Retail', en: 'Focused on developing POS solutions for FnB and Retail chain models', ko: 'FnB 및 소매 체인 모델을 위한 POS 솔루션 개발에 집중', zh: '专注于为餐饮和零售连锁模式开发POS解决方案', ja: 'FnBおよび小売チェーンモデル向けのPOSソリューション開発に注力' },
@@ -90,7 +99,7 @@ const translations: Translations = {
   
   // Pricing
   pricingBadge: { vi: 'Gói dịch vụ', en: 'Service Packages', ko: '서비스 패키지', zh: '服务套餐', ja: 'サービスパッケージ' },
-  pricingTitle: { vi: 'Grow with KAS — From Seed to Legacy', en: 'Grow with KAS — From Seed to Legacy', ko: 'KAS와 함께 성장 — 씨앗에서 유산까지', zh: '与KAS一起成长——从种子到传承', ja: 'KASと共に成長—種から遺産へ' },
+  pricingTitle: { vi: 'Grow with KAS POS — From Seed to Legacy', en: 'Grow with KAS POS — From Seed to Legacy', ko: 'KAS POS와 함께 성장 — 씨앗에서 유산까지', zh: '与KAS POS一起成长——从种子到传承', ja: 'KAS POSと共に成長 — 種から遺産へ' },
   pricingTitle2: { vi: 'Từ hạt mầm đến di sản, KAS POS đồng hành cùng hành trình phát triển của bạn', en: 'From Seed to Legacy, KAS POS accompanies your growth journey', ko: '씨앗에서 유산까지, KAS POS는 귀하의 성장 여정을 동반합니다', zh: '从种子到传承，KAS POS伴随您的成长之旅', ja: '種から遺産へ、KAS POSはあなたの成長の旅に同行します' },
   
   // Seed Plan
@@ -429,16 +438,25 @@ export default function KASLanding() {
           </div>
 
           {/* Main Title with Stagger Animation */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
             <span className="inline-block animate-slide-up bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient text-shadow-glow">
               {t('heroTitle')}
             </span>
           </h1>
 
           {/* Subtitle with Stagger */}
-          <p className="text-2xl md:text-3xl text-gray-700 mb-4 font-bold animate-slide-up stagger-1">
+          <p className="text-2xl md:text-3xl text-gray-600 mb-4 font-bold animate-slide-up stagger-1">
             {t('heroSubtitle')}
           </p>
+
+          {/* Title2 with Stagger Animation */}
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight animate-slide-up stagger-2">
+            <span className="inline-block bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent animate-gradient text-shadow-glow">
+              {t('heroTitle2')}
+            </span>
+          </h2>
+
           <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up stagger-2">
             {t('heroDesc')}
           </p>
@@ -536,61 +554,47 @@ export default function KASLanding() {
         </div>
       </section>
 
-      {/* Core Values Section */}
-      <section id="values" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      {/* Featured Features Section - POSONE style */}
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-xl font-bold uppercase tracking-wide mb-6">
-              <Gem size={20} />
-              <span>{t('valuesBadge')}</span>
+            <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-xl font-bold uppercase tracking-wide mb-6 animate-fade-in-scale">
+              <Star size={20} />
+              <span>{t('featuresBadge')}</span>
             </div>
-            {/* <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              <span className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
-                {t('valuesTitle')}
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 animate-fade-in-scale stagger-1">
+              <span className="bg-gradient-to-r from-blue-600 to-purple-500 bg-clip-text text-transparent">
+                {t('featuresTitle')}
               </span>
-            </h2> */}
+            </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 hover:border-blue-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4">
-                <Sparkles size={24} className="text-white" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: <Zap size={40} className="text-blue-500 animate-float" />, title: t('feature1'), desc: t('feature1Desc'), bg: 'bg-blue-50' },
+              { icon: <Shield size={40} className="text-indigo-500 animate-float" />, title: t('feature2'), desc: t('feature2Desc'), bg: 'bg-indigo-50' },
+              { icon: <Briefcase size={40} className="text-purple-500 animate-float" />, title: t('feature3'), desc: t('feature3Desc'), bg: 'bg-purple-50' },
+              { icon: <Target size={40} className="text-blue-500 animate-float" />, title: t('feature4'), desc: t('feature4Desc'), bg: 'bg-blue-50' },
+              { icon: <BookOpen size={40} className="text-indigo-500 animate-float" />, title: t('feature5'), desc: t('feature5Desc'), bg: 'bg-indigo-50' },
+              { icon: <Gem size={40} className="text-purple-500 animate-float" />, title: t('feature6'), desc: t('feature6Desc'), bg: 'bg-purple-50' },
+              { icon: <Heart size={40} className="text-blue-500 animate-float" />, title: t('feature7'), desc: t('feature7Desc'), bg: 'bg-blue-50' },
+              { icon: <Sparkles size={40} className="text-indigo-500 animate-float" />, title: t('feature8'), desc: t('feature8Desc'), bg: 'bg-indigo-50' },
+              { icon: <Users size={40} className="text-purple-500 animate-float" />, title: t('feature9'), desc: t('feature9Desc'), bg: 'bg-purple-50' },
+            ].map((f, i) => (
+              <div
+                key={i}
+                className={`group glass-effect rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 hover:border-blue-300 flex flex-col items-center text-center cursor-pointer animate-fade-in-scale stagger-${i+1} ${f.bg}`}
+                style={{ transition: 'transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s', willChange: 'transform' }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                <div className="w-16 h-16 flex items-center justify-center mb-4 rounded-xl shadow-lg transform group-hover:scale-110 transition-transform" style={{ background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(6px)' }}>
+                  {f.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">{f.title}</h3>
+                <p className="text-gray-600 text-base">{f.desc}</p>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{t('value1')}</h3>
-              <p className="text-gray-600">{t('value1Desc')}</p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 hover:border-indigo-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
-                <Shield size={24} className="text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{t('value2')}</h3>
-              <p className="text-gray-600">{t('value2Desc')}</p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 hover:border-purple-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
-                <Heart size={24} className="text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{t('value3')}</h3>
-              <p className="text-gray-600">{t('value3Desc')}</p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 hover:border-blue-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center mb-4">
-                <Users size={24} className="text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{t('value4')}</h3>
-              <p className="text-gray-600">{t('value4Desc')}</p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 hover:border-blue-300">
-              <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-4">
-                <TrendingUp size={24} className="text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{t('value5')}</h3>
-              <p className="text-gray-600">{t('value5Desc')}</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>

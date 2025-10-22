@@ -128,15 +128,6 @@ export default function ConsultationForm({ isOpen, onClose, language }: Consulta
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState('');
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => setIsVisible(true), 10);
-    } else {
-      setIsVisible(false);
-    }
-  }, [isOpen]);
 
   const t = (key: string): string => {
     return formTranslations[key]?.[language] || key;
@@ -184,19 +175,14 @@ export default function ConsultationForm({ isOpen, onClose, language }: Consulta
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 animate-fadeIn">
-      {/* Overlay with gradient */}
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+      {/* Overlay with gradient and fade-in */}
       <div 
-        className={`absolute inset-0 bg-gradient-to-br from-blue-900/40 via-purple-900/40 to-indigo-900/40 backdrop-blur-md transition-opacity duration-500 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`absolute inset-0 bg-gradient-to-br from-blue-900/40 via-purple-900/40 to-indigo-900/40 backdrop-blur-md transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={onClose}
       />
-      
-      {/* Modal */}
-      <div className={`relative w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl max-h-[90vh] overflow-hidden transform transition-all duration-500 ${
-        isVisible ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 translate-y-4'
-      }`}>
+      {/* Modal with fade and scale animation */}
+      <div className={`relative w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl max-h-[90vh] overflow-hidden transform transition-all duration-400 ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-4 pointer-events-none'}`}> 
         {/* Decorative gradient top */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
         
@@ -366,13 +352,13 @@ export default function ConsultationForm({ isOpen, onClose, language }: Consulta
             </div>
 
             <div className="flex gap-4 pt-6">
-              <button
+                <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 px-6 py-4 border-2 border-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-              >
+                className="flex-1 px-6 py-4 bg-gray-50 text-gray-700 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                >
                 {t('cancel')}
-              </button>
+                </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
